@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="../statics/css/style.css" type="text/css" media="all">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>login</title>
+    <script src="https://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <script src="https://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <script src="https://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+    <script>
+        $().ready(function () {
+// 在键盘按下并释放及提交后验证提交表单
+            $("#form1").validate({
+                rules: {
+                    username: {
+                        required: true,
+                        minlength: 6
+                    },
+                    password: {
+                        required: true,
+                        minlength: 5
+                    },
+                    confirm_password: {
+                        required: true,
+                        equalTo: "#password"
+                    }
+                },
+                messages: {
+                    username: {
+                        required: "Please enter a user name",
+                        minlength: "The user name must consist of six letters"
+                    },
+                    password: {
+                        required: "Please type your password",
+                        minlength: "Password length should not be less than 5 characters"
+                    },
+                    confirm_password: {
+                        required: "Please retype your password",
+                        minlength: "Password length should not be less than 5 characters",
+                        equalTo: "The two passwords do not match"
+                    },
+                }
+            });
+        });
+    </script>
+    <style>
+        .error {
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+    {{if eq .code 1}}
+    <script>
+        alert("用户名已被注册")
+    </script>
+    {{else if eq .code 2}}
+    <script>
+        alert("注册成功")
+        location.href="/login"
+    </script>
+    {{end}}
+</head>
+<body>
+<section class="main">
+    <div class="logo text-center">
+        <h1><a>Blog Account Register</a></h1>
+    </div>
+    <div class="content-w3ls text-center">
+        <img src="../statics/images/admin.png" alt="" class="img-responsive">
+        <form id="form1" action="/register" method="post">
+            <div class="wthree-field">
+                <input name="username" id="text1" type="text" placeholder="Username">
+            </div>
+            <div class="wthree-field">
+                <input name="password" id="password" type="Password" placeholder="Password">
+            </div>
+            <div class="wthree-field">
+                <input name="confirm_password" id="confirm_password" type="Password" placeholder="Confirm Password">
+            </div>
+            <div class="wthree-field">
+                <button type="submit" class="btn">Create An Account</button>
+            </div>
+            <div class="login-bottom">
+                <a href="/login" class="">Login</a>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

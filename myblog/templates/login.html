@@ -1,0 +1,65 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+-->
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Head -->
+
+<head>
+
+    <title>login</title>
+
+    <!-- Meta-Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- style CSS -->
+    <link rel="stylesheet" href="../statics/css/style.css" type="text/css" media="all">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    {{if eq .code 1}}
+    <script>
+        alert("用户名或密码错误")
+    </script>
+    {{else if eq .code 2}}
+    <script>
+        alert("登录成功")
+    </script>
+    {{end}}
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+
+<body>
+
+    <section class="main">
+        <div class="logo text-center">
+            <h1><a>Blog Account Login</a></h1>
+        </div>
+        <div class="content-w3ls text-center">
+            <img src="../statics/images/admin.png" alt="" class="img-responsive">
+            <form action="/login" method="post">
+                <div class="wthree-field">
+                    <input name="username" id="text1" type="text" value="" placeholder="Username" required>
+                </div>
+                <div class="wthree-field">
+                    <input name="password" id="myInput" type="Password" placeholder="Password" required>
+                </div>
+                <div class="wthree-field">
+                    <button type="submit" class="btn">Sign In</button>
+                </div>
+                <div class="login-bottom">
+                    <a href="/register" class="">Create An Account</a>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</body>
+<!-- //Body -->
+
+</html>

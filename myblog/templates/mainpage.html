@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!--
+Design by Free CSS Templates
+http://www.freecsstemplates.org
+Released for free under a Creative Commons Attribution 2.5 License
+
+Name       : Forthright
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20130409
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Forthright by FCT</title>
+    <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed|Open+Sans:400,300,700|Yesteryear" rel="stylesheet" type="text/css" />
+    <link href="../statics/css/style2.css" rel="stylesheet" type="text/css" media="screen" />
+</head>
+<body>
+<div id="menu-wrapper">
+    <div id="menu">
+        <ul>
+            <li class="current_page_item"><a href="#">Homepage</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Photos</a></li>
+            <li><a href="/login/{{.user}}" onclick="changeName('{{.user}}')">Change name</a></li>
+            <li><a href="/login">logout</a></li>
+            <li><a href="/login" onclick="confirmDelete('{{.user}}')">Delete Your Account</a></li>
+        </ul>
+    </div>
+    <!-- end #menu -->
+</div>
+
+<script>
+    function confirmDelete(userId) {
+        // 弹出确认对话框
+        var result = confirm("Are you sure you want to delete your account?");
+        if (result) {
+            // 如果用户点击确认
+            // 发送 DELETE 请求
+            fetch('/user/' + userId, {
+                method: 'DELETE'
+            })
+                .then(response => {
+                    // 处理响应
+                    if (response.ok) {
+                        // 如果删除成功
+                        alert("Your account has been deleted successfully.");
+                        // 你可以重定向用户到其他页面或者执行其他操作
+                    } else {
+                        // 如果删除失败
+                        alert("Failed to delete your account.");
+                    }
+                })
+                .catch(error => {
+                    // 处理错误
+                    console.error('Error:', error);
+                    alert("An error occurred while deleting your account.");
+                });
+        }
+    }
+    function changeName(userId) {
+        // 弹出输入框要求用户输入新的名字
+        var newName = prompt("Enter new name:");
+        if (newName !== null) {
+            // 用户点击了确定按钮
+            // 发送 POST 请求
+            fetch('/changeName/' + userId, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ newName: newName })
+            })
+                .then(response => {
+                    // 处理响应
+                    if (response.ok) {
+                        // 如果请求成功
+                        alert("Name changed successfully!");
+                        window.location.href = "/login/"+newName;
+                        // 可以重定向用户到其他页面或者执行其他操作
+                    } else {
+                        // 请求失败
+                        alert("用户名已被注册.");
+                    }
+                })
+                .catch(error => {
+                    // 处理错误
+                    console.error('Error:', error);
+                    alert("用户名已被注册.");
+                });
+        }
+    }
+</script>
+
+<div id="header-wrapper">
+    <div id="header">
+        <div id="logo">
+            <h1><a href="#">Welcome!!!     {{.user}}</h1>
+        </div>
+    </div>
+</div>
+<div id="wrapper">
+    <!-- end #header -->
+    <div id="page">
+        <div id="page-bgtop">
+            <div id="page-bgbtm">
+                <div id="content">
+                    <div class="post">
+                        <h2 class="title"><a href="#">Welcome to Forthright</a></h2>
+                        <p class="meta"><span class="date">May 10, 2013</span><span class="posted">Posted by <a href="#">Someone</a></span></p>
+                        <div style="clear: both;">&nbsp;</div>
+                        <div class="entry">
+                            <p>This is <strong>Forthright </strong>, a free, fully standards-compliant CSS template designed by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.  The photo used in this template is from   <a href="http://fotogrph.com/">Fotogrph</a>.  This free template is released under a <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attributions 2.5</a> license, so you’re pretty much free to do whatever you want with it (even use it commercially) provided you keep the links in the footer intact. Aside from that, have fun with it :)</p>
+                            <p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum ipsum. Proin imperdiet est. Phasellus dapibus semper urna. Pellentesque ornare, orci in felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.</p>
+                            <p class="links"><a href="#" class="button">Read More</a></p>
+                        </div>
+                    </div>
+                    <div class="post post-alt">
+                        <h2 class="title"><a href="#">Lorem ipsum sed aliquam</a></h2>
+                        <p class="meta"><span class="date">May 10, 2013</span><span class="posted">Posted by <a href="#">Someone</a></span></p>
+                        <div style="clear: both;">&nbsp;</div>
+                        <div class="entry">
+                            <p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus semper urna</a>. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est. Suspendisse lacus turpis, cursus egestas at sem. Sed lacus. Donec lectus. </p>
+                            <p class="links"><a href="#" class="button">Read More</a></p>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <h2 class="title"><a href="#">Consecteteur hendrerit </a></h2>
+                        <p class="meta"><span class="date">May 08, 2013</span><span class="posted">Posted by <a href="#">Someone</a></span></p>
+                        <div style="clear: both;">&nbsp;</div>
+                        <div class="entry">
+                            <p>Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. In nulla tortor, elementum vel, tempor at, varius non, purus. Mauris vitae nisl nec metus placerat consectetuer. Donec ipsum. Proin imperdiet est. Phasellus <a href="#">dapibus semper urna</a>. Pellentesque ornare, orci in consectetuer hendrerit, urna elit eleifend nunc, ut consectetuer nisl felis ac diam. Etiam non felis. Donec ut ante. In id eros. Suspendisse lacus turpis, cursus egestas at sem.  Mauris quam enim, molestie in, rhoncus ut, lobortis a, est. Sed lacus. Donec lectus. Nullam pretium nibh ut turpis. Nam bibendum. </p>
+                            <p class="links"><a href="#" class="button">Read More</a></p>
+                        </div>
+                    </div>
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+                <!-- end #content -->
+                <div id="sidebar">
+                    <ul>
+                        <li>
+                            <h2>Search Here</h2>
+                            <div id="search" >
+                                <form method="get" action="#">
+                                    <div>
+                                        <input type="text" name="s" id="search-text" value="" />
+                                        <input type="submit" id="search-submit" value="" />
+                                    </div>
+                                </form>
+                            </div>
+                            <div style="clear: both;">&nbsp;</div>
+                        </li>
+                        <li>
+                            <h2>Aliquam tempus</h2>
+                            <p>Mauris vitae nisl nec metus placerat perdiet est. Phasellus dapibus semper consectetuer hendrerit.</p>
+                        </li>
+                        <li>
+                            <h2>Categories</h2>
+                            <ul>
+                                <li><a href="#">Aliquam libero</a></li>
+                                <li><a href="#">Consectetuer adipiscing elit</a></li>
+                                <li><a href="#">Metus aliquam pellentesque</a></li>
+                                <li><a href="#">Suspendisse iaculis mauris</a></li>
+                                <li><a href="#">Urnanet non molestie semper</a></li>
+                                <li><a href="#">Proin gravida orci porttitor</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h2>Blogroll</h2>
+                            <ul>
+                                <li><a href="#">Aliquam libero</a></li>
+                                <li><a href="#">Consectetuer adipiscing elit</a></li>
+                                <li><a href="#">Metus aliquam pellentesque</a></li>
+                                <li><a href="#">Suspendisse iaculis mauris</a></li>
+                                <li><a href="#">Urnanet non molestie semper</a></li>
+                                <li><a href="#">Proin gravida orci porttitor</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <h2>Archives</h2>
+                            <ul>
+                                <li><a href="#">Aliquam libero</a></li>
+                                <li><a href="#">Consectetuer adipiscing elit</a></li>
+                                <li><a href="#">Metus aliquam pellentesque</a></li>
+                                <li><a href="#">Suspendisse iaculis mauris</a></li>
+                                <li><a href="#">Urnanet non molestie semper</a></li>
+                                <li><a href="#">Proin gravida orci porttitor</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- end #sidebar -->
+                <div style="clear: both;">&nbsp;</div>
+            </div>
+        </div>
+    </div>
+    <!-- end #page -->
+</div>
+<div id="footer">
+    <p>&copy; 2013 Sitename.com. | Design by <a href="http://www.freecsstemplates.org/" rel="nofollow">FreeCSSTemplates.org</a>.</p>
+</div>
+<!-- end #footer -->
+</body>
+</html>
